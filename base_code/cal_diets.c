@@ -81,7 +81,7 @@ void inputDiet(HealthData* health_data) {
         if (strcmp(choice, diet_list[i].food_name) == 0) {
             data->total_consumed += diets[i].calories;
             data->remaining_calories -= diets[i].calories;
-            printf("You consumed %d kcal from %s.\n", diets[i].calories, diets[i].name);
+            printf("You consumed %d kcal from %s.\n", diet_list[i].calories_intake, diets_list[i].food_name);
             return;
         }
     }
