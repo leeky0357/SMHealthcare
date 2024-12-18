@@ -58,20 +58,33 @@ void inputDiet(HealthData* health_data) {
     
     // ToCode: to provide the options for the diets to be selected
     printf("The list of diets:\n");
-    for (i=0;i<diet_list_size;i++){
-    	printf("%s - %d kcal\n", diet_list[i].food_name, diet_list[i].calories_intake);
+    for (i=0; i<diet_list_size; i++){
+    	printf("%s - %d kcal\n", diet_list[i].food_name, diet_list[i].calories_intake);		//diets.txt list
 	}
     
 	// ToCode: to enter the diet to be chosen with exit option
-    printf("0. END\n");
+    printf("0. END\n");			//choose 0 -> end
     printf("Enter the diet: \n");
-    scanf("%s", food_name);
+    scanf("%s", &choice);		//scan choice
+    
+    if (choice == 0){
+    	printf("END\n");
+    	return;
+	}		//0 -> END
+	
 
     // ToCode: to enter the selected diet in the health data
     
 
     // ToCode: to enter the total calories intake in the health data
-
+	for (int i=0; i<diet_list_size; i++) {
+        if (strcmp(choice, diet_list[i].food_name) == 0) {
+            data->total_consumed += diets[i].calories;
+            data->remaining_calories -= diets[i].calories;
+            printf("You consumed %d kcal from %s.\n", diets[i].calories, diets[i].name);
+            return;
+        }
+    }
 
 }
 
