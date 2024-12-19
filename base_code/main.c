@@ -45,7 +45,7 @@ int main() {
         	printf("3. Show logged information \n");
         	printf("4. Exit \n");
         	printf("Select the desired number: ");
-        	scanf("%d", &choice);
+        	scanf("%d", &choice);		//scan choice
         	printf("=======================================================================\n");
         }
         
@@ -64,7 +64,7 @@ int main() {
                 break;
                 
             case 4:
-    			printf("Exit the system.\n");
+    			printf("Exit the system.\n");		//shut down 1
     			printf("=======================================================================\n");
                 break;
                 
