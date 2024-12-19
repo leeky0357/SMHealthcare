@@ -59,33 +59,31 @@ void inputDiet(HealthData* health_data) {
     // ToCode: to provide the options for the diets to be selected
     printf("The list of diets:\n");
     for (i=0; i<diet_list_size; i++){
-    	printf("%s - %d kcal\n", diet_list[i].food_name, diet_list[i].calories_intake);		//diets.txt list
+    	printf("%d. %s - %d kcal\n", i+1, diet_list[i].food_name, diet_list[i].calories_intake);		//diets.txt list
 	}
     
 	// ToCode: to enter the diet to be chosen with exit option
     printf("0. END\n");			//choose 0 -> end
-    printf("Enter the diet: ");
-    scanf("%s", &choice);		//scan choice
+    printf("Enter the number of diet: ");
+    scanf("%d", &choice);		//scan choice
     
     if (choice == 0){
     	printf("END\n");
     	return;
 	}		//0 -> END
+	if (choice < 1 || choice > diet_list_size) {
+        printf("Please try again. Enter the number from the list.\n");		//if invalid diet (list X)
+        return;
+    }
+	printf("%s - %d kcal \n", diet_list[choice-1].food_name, diet_list[choice-1].calories_intake);		//food name - kcal
 	
-
     // ToCode: to enter the selected diet in the health data
-    
+    strcpy(health_data -> diet[health_data->diet_count].food_name, diet_list[choice-1].food_name);		//copy
+    health_data -> diet[health_data -> diet_count].calories_intake = diet_list[choice-1].calories_intake;
+    health_data -> diet_count++;
 
     // ToCode: to enter the total calories intake in the health data
-	for (int i=0; i<diet_list_size; i++) {
-        if (strcmp(choice, diet_list[i].food_name) == 0) {		//choice = diet(list)
-            health_data -> diet[health_data->diet_count] = diet_list[i];
-            health_data -> diet_count++;
-            health_data -> total_calories_intake += diet_list[i].calories_intake;
-            printf("%s - %d kcal \n", diet_list[i].food_name, diet_list[i].calories_intake);
-            return;
-        }
-    }
-	printf("Please try again. Enter the diet name from the list");		//invalid diet(list X)
+    health_data -> total_calories_intake += diet_list[choice-1].calories_intake;
+      
 }
 
