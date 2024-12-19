@@ -34,21 +34,24 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
 
     // ToCode: to save the chosen exercise and total calories burned 
     fprintf(file, "[Exercises] \n");
-    for (int i=0; i<MAX_EXERCISES && health_data -> total_calories_burned; i++){
-    	fprintf(file,"%s - %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned*duration);
+    for (int i=0; i<MAX_EXERCISES && health_data -> exercise_count; i++){
+    	fprintf(file,"%s - %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned_per_minute*duration);
 	}
-    
+	fprintf(file, "Total calories burned : %d kcal\n", health_data -> total_calories_burned);
+	
     // ToCode: to save the chosen diet and total calories intake 
     fprintf(file, "\n[Diets] \n");
-	for (int i=0; i<MAX_DIETS && data -> total_calories_intake);{
-		fprintf(file, "Total calories intake - %d - %s\n", i+1, data -> total_calories_intake):
+	for (int i=0; i<MAX_DIETS && health_data -> diet_count; i++){
+		fprintf(file, "%s - %d kcal\n", health_data->diets[i].food_name, health_data->diets[i].calories_intake):
 	}
+	fprintf(file, "Total calories intake : %d kcal\n", health_data -> total_calories_intake);)
 
     // ToCode: to save the total remaining calrories
     fprintf(file, "\n[Total] \n");
-    fprintf(file, "The remaining calories - %d\n",)
+    fprintf(file, "Basal metabolic rate - %d kcal\n", health_data -> BASAL_METABOLIC_RATE);
+    fprintf(file, "The remaining calories - %d\n", health_data -> BASAL_METABOLIC_RATE + health_data -> total_calories_intake - health_data->diet total_calories_burned);
     
-    
+    fclose(file);
 }
 
 /*
@@ -66,27 +69,40 @@ void printHealthData(const HealthData* health_data) {
 	
 	// ToCode: to print out the saved history of exercises
 	printf("=========================== History of Exercise =======================\n");
-  
+  	for (i=0; i<MAX_EXERCISES && health_data->exercise_count; i++) {
+        printf("Exercise : %s, Calories burned : %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned_per_minute*duration);		// saved exercises
+    }
   
     printf("=======================================================================\n");
 
     // ToCode: to print out the saved history of diets
     printf("============================= History of Diet =========================\n");
-
+	for (i=0; i<MAX_DIETS && health_data->diet_count; i++) {
+        printf("Food : %s, Calories intake : %d kcal\n", health_data->diets[i].food_name, health_data->diets[i].calories_intake);		// saved diets
+    }
 
     printf("=======================================================================\n");
-
 
 	// ToCode: to print out the saved history of calories including basal metabolic rate, 
 	// total calories burned, total calories intake, and the remaining calories
 	printf("============================== Total Calories =========================\n");
- 
- 
+	printf("Basal Metabolic Rate : %d\n", health_data-> BASAL_METABOLIC_RATE);
+ 	printf("Total calories burned: %d kcal\n", health_data -> total_calories_burned);
+ 	printf("Total calories intake: %d kcal\n", health_data -> total_calories_intake);
+ 	int remaining_calories = health_data->BASAL_METABOLIC_RATE + health_data->total_calories_intake - health_data->total_calories_burned
+ 	printf("The remaining calories : %d kcal\n", remaining_calories);
+ 	
     printf("=======================================================================\n \n");
     
-	
 	// ToCode: to print out the recommendtaion depending on the current total calories burned and intake    
-    
+    if ( remaining_calories =0) {
+        printf("You have consumed all your calories for today!\n");
+        
+    } else if (health_data->BASAL_METABOLIC_RATE + health_data->total_calories_intake - health_data->total_calories_burned < 0) {
+        printf("[Warning] Too few calories!\n");
+    } else {
+        printf("Recommendation: You are balanced! Keep maintaining your current routine.\n");
+    }
     
 	 printf("=======================================================================\n");
 }
