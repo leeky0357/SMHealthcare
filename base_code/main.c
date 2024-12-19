@@ -31,6 +31,7 @@ int main() {
     do {
     	int remaining_calories = health_data.total_calories_intake - BASAL_METABOLIC_RATE - health_data.total_calories_burned;		// remaining calories
     	if (remaining_calories == 0 ){
+    		printf("=======================================================================\n");
             printf("You have consumed all your calories for today! \n");
             printf("Shut down the system.\n");
     		break;	// shut down
