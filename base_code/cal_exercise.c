@@ -57,6 +57,8 @@ void loadExercises(const char* EXERCISEFILEPATH) {
 
 void inputExercise(HealthData* health_data) {
     int choice, duration, i;
+    int calories_burned;
+    
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
 	 for (i=0; i<exercise_list_size; i++){
@@ -86,7 +88,7 @@ void inputExercise(HealthData* health_data) {
 
     // ToCode: to enter the selected exercise and total calcories burned in the health data
     strcpy(health_data -> exercises[health_data->exercise_count].exercise_name, exercise_list[choice-1].exercise_name);		//copy exercise name
-    strcpy(health_data-> exercises[health_data->exercise_count].calories_burned, exercise_list[choice-1].calories_burned_per_minute*duration);	// copy burned calories
+    health_data-> exercises[health_data->exercise_count].calories_burned = exercise_list[choice-1].calories_burned_per_minute*duration;	// copy burned calories
     health_data->exercises[health_data->exercise_count] = exercise_list[choice-1];
     health_data->exercise_count++;
     health_data->total_calories_burned += exercise_list[choice-1].calories_burned_per_minute*duration;
