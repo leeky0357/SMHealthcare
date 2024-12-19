@@ -64,13 +64,13 @@ void inputDiet(HealthData* health_data) {
     
 	// ToCode: to enter the diet to be chosen with exit option
     printf("0. END\n");			//choose 0 -> end
-    printf("Enter the number of diet: ");
+    printf("Enter the number of diet: ");		// input the number
     scanf("%d", &choice);		//scan choice
     
     if (choice == 0){
     	printf("END\n");
     	return;
-	}		//0 -> END
+	}				//0 -> END
 	if (choice < 1 || choice > diet_list_size) {
         printf("Please try again. Enter the number from the list.\n");		//if invalid diet (list X)
         return;
@@ -83,7 +83,7 @@ void inputDiet(HealthData* health_data) {
     health_data -> diet_count++;
 
     // ToCode: to enter the total calories intake in the health data
-    health_data -> total_calories_intake += diet_list[choice-1].calories_intake;
+    health_data -> total_calories_intake += diet_list[choice-1].calories_intake;		//total calories intake
       
 }
 

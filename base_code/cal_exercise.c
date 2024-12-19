@@ -62,7 +62,7 @@ void inputExercise(HealthData* health_data) {
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
 	 for (i=0; i<exercise_list_size; i++){
-    	printf("%d. %s - %d kcal\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);		// exercises.txt list
+    	printf("%d. %s - %d kcal\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute*duration);		// exercises.txt list
 	}
 
     // ToCode: to enter the exercise to be chosen with exit option
@@ -73,7 +73,7 @@ void inputExercise(HealthData* health_data) {
  	if (choice == 0){
     	printf("END\n");
     	return;
-	}		// if) 0 -> END
+	}				// if) 0 -> END
 	
 	if (choice < 1 || choice > exercise_list_size) {
         printf("Please try again. Enter the number from the list.\n");		//if invalid exercise (list X)
@@ -88,9 +88,9 @@ void inputExercise(HealthData* health_data) {
 
     // ToCode: to enter the selected exercise and total calcories burned in the health data
     strcpy(health_data -> exercises[health_data->exercise_count].exercise_name, exercise_list[choice-1].exercise_name);		//copy exercise name
-    health_data-> (exercises[health_data->exercise_count].calories_burned = exercise_list[choice-1].calories_burned_per_minute * duration);	// define, move burned calories
+    health_data->exercises[health_data->exercise_count].calories_burned = exercise_list[choice-1].calories_burned_per_minute * duration;	// define, move burned calories
     health_data->exercises[health_data->exercise_count] = exercise_list[choice-1];
     health_data->exercise_count++;
-    health_data->total_calories_burned += exercise_list[choice-1].calories_burned_per_minute*duration;
+    health_data->total_calories_burned += exercise_list[choice-1].calories_burned_per_minute*duration;		// total calories burned
     
 }
