@@ -48,11 +48,11 @@ int main() {
 		// ToCode: to run the sysmtem based on the user's choice
         switch (choice) {
             case 1:
-            	inputExercise(&health_data);
+            	inputExercise(&health_data);		// save Exercise
                 break;
                 
             case 2:
-            	inputDiet(&health_data);
+            	inputDiet(&health_data);			// save Diet
                 break;
                 
             case 3:
@@ -69,7 +69,7 @@ int main() {
                 printf("[Error] Invalid option. \n");
                 printf("Please try again! \n");
         }
-    } while ( );
+    } while (choice );
 
     return 0;
 }
