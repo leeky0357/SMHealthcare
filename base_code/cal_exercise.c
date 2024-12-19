@@ -34,7 +34,7 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    while (fscanf(file, "%s %d", exercise_list[exercise_list_size].exercise_name, &exercise_list[exercise_list_size].calories_burned_per_minute) != EOF) {
+    while (fscanf(file, "%s %d", exercise_list[exercise_list_size].exercise_name, &exercise_list[exercise_list_size].calories_burned_per_minute) != EOF) {	//scan file -> exercise list
     	exercise_list_size++;
         if (exercise_list_size >= MAX_EXERCISES){
         	break;
@@ -85,10 +85,10 @@ void inputExercise(HealthData* health_data) {
     printf("%s - %d kcal \n", exercise_list[choice-1].exercise_name, exercise_list[choice-1].calories_burned_per_minute*duration);
 
     // ToCode: to enter the selected exercise and total calcories burned in the health data
-    strcpy(health_data -> exercises[health_data->exercise_count].exercise_name, exercise_list[choice-1].exercise_name);		//copy
+    strcpy(health_data -> exercises[health_data->exercise_count].exercise_name, exercise_list[choice-1].exercise_name);		//copy exercise name
+    strcpy(health_data-> exercises[health_data->exercise_count].calories_burned, exercise_list[choice-1].calories_burned_per_minute*duration);	// copy burned calories
     health_data->exercises[health_data->exercise_count] = exercise_list[choice-1];
     health_data->exercise_count++;
-    health_data->calories_burned = exercise_list[choice-1].calories_burned_per_minute*duration;
     health_data->total_calories_burned += exercise_list[choice-1].calories_burned_per_minute*duration;
     
 }
