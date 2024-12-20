@@ -79,7 +79,7 @@ void inputDiet(HealthData* health_data) {
 	
     // ToCode: to enter the selected diet in the health data
     strcpy(health_data -> diet[health_data->diet_count].food_name, diet_list[choice-1].food_name);		//copy
-    health_data -> diet[health_data -> diet_count].calories_intake = diet_list[choice-1].calories_intake;
+    health_data -> diet[health_data -> diet_count].calories_intake = diet_list[choice-1].calories_intake;	//move calories intake
     health_data -> diet_count++;
 
     // ToCode: to enter the total calories intake in the health data

@@ -62,7 +62,7 @@ void inputExercise(HealthData* health_data) {
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
 	 for (i=0; i<exercise_list_size; i++){
-    	printf("%d. %s - %d kcal\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute*duration);		// exercises.txt list
+    	printf("%d. %s - %d kcal\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);		// exercises.txt list
 	}
 
     // ToCode: to enter the exercise to be chosen with exit option
@@ -83,14 +83,19 @@ void inputExercise(HealthData* health_data) {
     // To enter the duration of the exercise
     printf("Enter the duration of the exercise (in min.): ");
     scanf("%d", &duration);		// scan duration (minutes)
-	int calories_burned = exercise_list[choice-1].calories_burned_per_minute * duration;
+    
+    if (duration < 0);
+    	printf("Please input number(minute) greater than 0");
+    	return;
+    	
+	int calories_burned = exercise_list[choice-1].calories_burned_per_minute * duration;	//define calories_burned in duration (per 1 exercise)
     printf("%s - %d kcal \n", exercise_list[choice-1].exercise_name, calories_burned);		//exercise, calories
 	
     // ToCode: to enter the selected exercise and total calcories burned in the health data
     strcpy(health_data -> exercises[health_data->exercise_count].exercise_name, exercise_list[choice-1].exercise_name);		//copy exercise name
-    health_data->exercises[health_data->exercise_count].calories_burned = calories_burned;	// define, move burned calories per 1 exercise
-    health_data->exercises[health_data->exercise_count] = exercise_list[choice-1];
+    health_data->exercises[health_data->exercise_count].calories_burned = calories_burned;	// move burned calories per 1 exercise
     health_data->exercise_count++;
+    //to enter the total calories burned in the health data
     health_data->total_calories_burned += exercise_list[choice-1].calories_burned_per_minute*duration;		// total calories burned
     
 }
