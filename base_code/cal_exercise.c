@@ -84,10 +84,10 @@ void inputExercise(HealthData* health_data) {
     printf("Enter the duration of the exercise (in min.): ");
     scanf("%d", &duration);		// scan duration (minutes)
     
-    if (duration < 0);
+    if (duration < 0){		// duration < 0 
     	printf("Please input number(minute) greater than 0");
     	return;
-    	
+	}
 	int calories_burned = exercise_list[choice-1].calories_burned_per_minute * duration;	//define calories_burned in duration (per 1 exercise)
     printf("%s - %d kcal \n", exercise_list[choice-1].exercise_name, exercise_list[choice-1].calories_burned);		//exercise, calories
 	
