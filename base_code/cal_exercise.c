@@ -84,7 +84,7 @@ void inputExercise(HealthData* health_data) {
     printf("Enter the duration of the exercise (in min.): ");
     scanf("%d", &duration);		// scan duration (minutes)
     
-    if (duration < 0){		// duration < 0 
+    if (duration < 0){		// duration < 0 (invalid)
     	printf("Please input number(minute) greater than 0");
     	return;
 	}
